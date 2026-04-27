@@ -8,6 +8,18 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
+const repositoryName = process.env.GITHUB_REPOSITORY?.split("/")[1] ?? "";
+const pagesBasePath =
+  process.env.GITHUB_ACTIONS === "true" && repositoryName ? `/${repositoryName}` : "";
+
+function withBasePath(path) {
+  if (!path.startsWith("/")) {
+    return path;
+  }
+
+  return `${pagesBasePath}${path}`;
+}
+
 const navigationLinks = [
   { href: "#hero", label: "Манифест" },
   { href: "#features", label: "Техника" },
@@ -30,7 +42,7 @@ const bentoCards = [
     description:
       "Formula 0 переводит ручной привод в формат ночной лиги, где Michelin держит покрытие, а карбоновый кокпит выдерживает жесткий темп каждого круга.",
     mediaType: "image",
-    mediaSrc: "/media/formula-zero-track-sparks.png",
+    mediaSrc: withBasePath("/media/formula-zero-track-sparks.png"),
     mediaAlt: "Dynamic Formula 0 racing wheelchair sliding on a circuit with sparks.",
     layout: "md:col-span-2 md:row-span-2",
     tone: "from-zinc-950/85 via-zinc-950/50 to-transparent"
@@ -40,7 +52,7 @@ const bentoCards = [
     description:
       "Сlick-ориентированный состав рассчитан на короткие агрессивные сессии и чистую реакцию при резком ручном торможении.",
     mediaType: "image",
-    mediaSrc: "/media/formula-zero-michelin-smoke.png",
+    mediaSrc: withBasePath("/media/formula-zero-michelin-smoke.png"),
     mediaAlt: "Close-up of Michelin tire smoke on a Formula 0 wheelchair.",
     layout: "md:col-span-1 md:row-span-2",
     tone: "from-zinc-950/88 via-zinc-950/58 to-transparent"
@@ -50,7 +62,7 @@ const bentoCards = [
     description:
       "Раздельные рычаги ускорения и торможения оставляют пилоту полный тактильный контроль без электроусилителей и программных фильтров.",
     mediaType: "image",
-    mediaSrc: "/media/formula-zero-brake-levers.png",
+    mediaSrc: withBasePath("/media/formula-zero-brake-levers.png"),
     mediaAlt: "Close-up of manual acceleration and brake levers on a Formula 0 wheelchair.",
     layout: "md:col-span-1 md:row-span-2",
     tone: "from-zinc-950/88 via-zinc-950/60 to-transparent"
@@ -60,7 +72,7 @@ const bentoCards = [
     description:
       "Силовые узлы, спицы и несущая геометрия проектируются вокруг низкой массы, точной жесткости и мгновенного отклика на импульс пилота.",
     mediaType: "image",
-    mediaSrc: "/media/formula-zero-accel-rig.png",
+    mediaSrc: withBasePath("/media/formula-zero-accel-rig.png"),
     mediaAlt: "Carbon wheel structure and acceleration lever system for Formula 0.",
     layout: "md:col-span-2 md:row-span-2",
     tone: "from-zinc-950/85 via-zinc-950/52 to-transparent"
@@ -70,7 +82,7 @@ const bentoCards = [
     description:
       "Шина прогревается, дым рвет тишину, а механика выходит на передний план без единой электрической подсказки.",
     mediaType: "video",
-    mediaSrc: "/media/formula-zero-tire-smoke.mp4",
+    mediaSrc: withBasePath("/media/formula-zero-tire-smoke.mp4"),
     mediaAlt: "Formula 0 tire smoke video loop.",
     layout: "md:col-span-2 md:row-span-2",
     tone: "from-zinc-950/86 via-zinc-950/46 to-transparent"
@@ -82,21 +94,21 @@ const accordionItems = [
     title: "Night Sprint Sessions",
     body:
       "Короткие городские или стадионные сессии, где темп поднимается за счет света, дыма и ручной агрессии в каждом входе в поворот.",
-    image: "/media/formula-zero-hero.png",
+    image: withBasePath("/media/formula-zero-hero.png"),
     alt: "Formula 0 hero shot at night."
   },
   {
     title: "Michelin Control Lab",
     body:
       "Показ техники строится вокруг теплового поведения покрышки, трения и того, как пилот дозирует нагрузку только руками.",
-    image: "/media/formula-zero-michelin-compound.png",
+    image: withBasePath("/media/formula-zero-michelin-compound.png"),
     alt: "Michelin compound close-up on Formula 0 racing tire."
   },
   {
     title: "Representative Briefing",
     body:
       "Приватный разговор для промоутеров, треков и брендов, которым нужен новый формат спортивного зрелища с высокой визуальной ценностью.",
-    image: "/media/formula-zero-representative.png",
+    image: withBasePath("/media/formula-zero-representative.png"),
     alt: "Portrait of Formula 0 representative."
   }
 ];
@@ -107,7 +119,7 @@ const desireCards = [
     text:
       "Видео не имитирует мощность, а показывает физику ручной подачи и то, как состав Michelin работает под нагрузкой.",
     mediaType: "video",
-    mediaSrc: "/media/formula-zero-tire-smoke.mp4",
+    mediaSrc: withBasePath("/media/formula-zero-tire-smoke.mp4"),
     mediaAlt: "Tire smoke video from Formula 0.",
     height: "lg:h-[72vh]"
   },
@@ -116,7 +128,7 @@ const desireCards = [
     text:
       "Крупный макро-ракурс превращает покрышку в главный визуальный объект лиги: трение, дым и фактура материала работают как айдентика.",
     mediaType: "image",
-    mediaSrc: "/media/formula-zero-michelin-compound.png",
+    mediaSrc: withBasePath("/media/formula-zero-michelin-compound.png"),
     mediaAlt: "Close-up of Michelin tire compound.",
     height: "lg:h-[56vh]"
   },
@@ -125,7 +137,7 @@ const desireCards = [
     text:
       "Форма ниже ведет в закрытый контур представительства, где обсуждаются показательные заезды, партнерские активации и запуск событийного формата.",
     mediaType: "image",
-    mediaSrc: "/media/formula-zero-representative.png",
+    mediaSrc: withBasePath("/media/formula-zero-representative.png"),
     mediaAlt: "Portrait for Formula 0 representative line.",
     height: "lg:h-[48vh]"
   }
@@ -145,6 +157,38 @@ const initialFormState = {
   interest: interestOptions[0],
   message: ""
 };
+
+const representativeEmail = process.env.NEXT_PUBLIC_REPRESENTATIVE_EMAIL?.trim() ?? "";
+
+function buildInquiryDraft({ name, email, organization, interest, message }) {
+  return [
+    "Formula 0 inquiry",
+    "",
+    `Name: ${name}`,
+    `Email: ${email}`,
+    `Organization: ${organization || "Not provided"}`,
+    `Interest: ${interest}`,
+    "",
+    "Message:",
+    message
+  ].join("\n");
+}
+
+function downloadInquiryDraft(text) {
+  const blob = new Blob([text], {
+    type: "text/plain;charset=utf-8"
+  });
+  const objectUrl = URL.createObjectURL(blob);
+  const anchor = document.createElement("a");
+
+  anchor.href = objectUrl;
+  anchor.download = `formula-zero-inquiry-${Date.now()}.txt`;
+  document.body.appendChild(anchor);
+  anchor.click();
+  anchor.remove();
+
+  URL.revokeObjectURL(objectUrl);
+}
 
 function MediaFrame({ type, src, alt, priority = false, sizes = "100vw", videoPoster }) {
   if (type === "video") {
@@ -277,18 +321,24 @@ export default function FormulaZeroLanding() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/api/feedback", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formState)
-      });
+      const draft = buildInquiryDraft(formState);
 
-      const result = await response.json();
+      if (representativeEmail) {
+        const mailtoUrl = `mailto:${representativeEmail}?subject=${encodeURIComponent(
+          `Formula 0 inquiry: ${formState.interest}`
+        )}&body=${encodeURIComponent(draft)}`;
 
-      if (!response.ok) {
-        throw new Error(result.message || "Не удалось отправить запрос.");
+        window.location.href = mailtoUrl;
+      } else {
+        downloadInquiryDraft(draft);
+
+        if (typeof navigator !== "undefined" && navigator.clipboard?.writeText) {
+          try {
+            await navigator.clipboard.writeText(draft);
+          } catch {
+            // Clipboard support is optional; the downloaded draft remains the primary fallback.
+          }
+        }
       }
 
       setFormState(initialFormState);
@@ -296,7 +346,9 @@ export default function FormulaZeroLanding() {
       startTransition(() => {
         setStatus({
           type: "success",
-          message: result.message
+          message: representativeEmail
+            ? "Почтовый черновик подготовлен. Проверьте открывшееся письмо и отправьте его представителю."
+            : "Черновик обращения скачан и скопирован в буфер. Для прямой отправки через форму задайте NEXT_PUBLIC_REPRESENTATIVE_EMAIL при сборке GitHub Pages."
         });
       });
     } catch (error) {
@@ -306,7 +358,7 @@ export default function FormulaZeroLanding() {
           message:
             error instanceof Error
               ? error.message
-              : "Сервис формы временно недоступен. Повторите попытку позже."
+              : "Не удалось подготовить обращение. Повторите попытку позже."
         });
       });
     } finally {
@@ -381,7 +433,7 @@ export default function FormulaZeroLanding() {
                     fill
                     priority
                     sizes="128px"
-                    src="/media/formula-zero-track-sparks.png"
+                    src={withBasePath("/media/formula-zero-track-sparks.png")}
                   />
                 </span>
                 привод
@@ -420,7 +472,7 @@ export default function FormulaZeroLanding() {
                   alt="Formula 0 hero wheelchair at night."
                   priority
                   sizes="(min-width: 1024px) 42vw, 100vw"
-                  src="/media/formula-zero-hero.png"
+                  src={withBasePath("/media/formula-zero-hero.png")}
                   type="image"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/32 to-transparent" />
@@ -437,9 +489,9 @@ export default function FormulaZeroLanding() {
                 <MediaFrame
                   alt="Formula 0 tire smoke video."
                   sizes="(min-width: 1024px) 24vw, 55vw"
-                  src="/media/formula-zero-tire-smoke.mp4"
+                  src={withBasePath("/media/formula-zero-tire-smoke.mp4")}
                   type="video"
-                  videoPoster="/media/formula-zero-michelin-smoke.png"
+                  videoPoster={withBasePath("/media/formula-zero-michelin-smoke.png")}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 p-4">
@@ -511,7 +563,7 @@ export default function FormulaZeroLanding() {
                       sizes="(min-width: 768px) 50vw, 100vw"
                       src={card.mediaSrc}
                       type={card.mediaType}
-                      videoPoster="/media/formula-zero-track-sparks.png"
+                      videoPoster={withBasePath("/media/formula-zero-track-sparks.png")}
                     />
                   </div>
                   <div
@@ -635,7 +687,7 @@ export default function FormulaZeroLanding() {
                       sizes="(min-width: 1024px) 56vw, 100vw"
                       src={card.mediaSrc}
                       type={card.mediaType}
-                      videoPoster="/media/formula-zero-michelin-smoke.png"
+                      videoPoster={withBasePath("/media/formula-zero-michelin-smoke.png")}
                     />
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/36 to-transparent" />
@@ -677,7 +729,7 @@ export default function FormulaZeroLanding() {
                     <MediaFrame
                       alt="Official Formula 0 representative portrait."
                       sizes="(min-width: 1024px) 42vw, 100vw"
-                      src="/media/formula-zero-representative.png"
+                      src={withBasePath("/media/formula-zero-representative.png")}
                       type="image"
                     />
                   </div>
@@ -702,8 +754,8 @@ export default function FormulaZeroLanding() {
                       кампаний и private showcases.
                     </div>
                     <div className="rounded-2xl border border-white/10 bg-black/18 px-4 py-3">
-                      Ответная линия работает через форму и фиксирует входящий запрос в
-                      локальном контуре сайта.
+                      Форма на GitHub Pages готовит готовый draft обращения и может
+                      открыть письмо напрямую, если при сборке задан email представителя.
                     </div>
                   </div>
                 </div>
@@ -717,8 +769,8 @@ export default function FormulaZeroLanding() {
                     Feedback form
                   </p>
                   <p className="mt-4 text-base leading-8 text-zinc-300">
-                    Оставьте имя, контакт и контекст запроса. Ответ будет сохранен на
-                    сервере и готов для дальнейшей обработки представителем.
+                    Оставьте имя, контакт и контекст запроса. В статическом GitHub Pages
+                    режиме форма подготавливает draft обращения без серверного backend.
                   </p>
                 </div>
 
@@ -803,8 +855,8 @@ export default function FormulaZeroLanding() {
                     </button>
 
                     <p className="text-sm leading-7 text-zinc-400">
-                      Запрос сохраняется локально и остается доступным для дальнейшей
-                      обработки.
+                      На GitHub Pages эта форма работает без Node.js backend и
+                      подготавливает текст обращения на стороне браузера.
                     </p>
                   </div>
 

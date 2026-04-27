@@ -1,11 +1,15 @@
 import "./globals.css";
 
+const repositoryName = process.env.GITHUB_REPOSITORY?.split("/")[1] ?? "";
+const pagesBasePath =
+  process.env.GITHUB_ACTIONS === "true" && repositoryName ? `/${repositoryName}` : "";
+
 export const metadata = {
   title: "Formula 0 | Premium Racing League",
   description:
     "Formula 0 is an extreme wheelchair racing league built around Michelin tires, carbon engineering, and pure manual control.",
   icons: {
-    icon: "/media/formula-zero-michelin-smoke.png"
+    icon: `${pagesBasePath}/media/formula-zero-michelin-smoke.png`
   }
 };
 
